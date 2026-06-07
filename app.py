@@ -342,7 +342,7 @@ Kolom 2+ = spektra sampel
                     proc_spectra[:, i] -= proc_spectra[:, i].min()
             if do_norm:
                 for i in range(proc_spectra.shape[1]):
-                    area = np.trapz(np.abs(proc_spectra[:, i]), wavenumber)
+                   area = np.trapezoid(np.abs(proc[:, i]), wavenumber) if hasattr(np, 'trapezoid') else np.trapz(np.abs(proc[:, i]), wavenumber)
                     if area > 0:
                         proc_spectra[:, i] /= area
 
